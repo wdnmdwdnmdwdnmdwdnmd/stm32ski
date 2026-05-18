@@ -1,0 +1,27 @@
+# 编译输出目录及文件
+Debug/
+Release/
+Objects/
+Listings/
+*.o
+*.d
+*.crf
+*.htm
+*.dep
+*.map
+*.lst
+*.hex
+*.bin
+*.elf
+*.axf
+*.lnp
+*.build_log.htm
+
+# IDE 相关的临时文件 (根据你用的 IDE 选留)
+*.uvoptx
+*.uvguix.*
+*.pbw
+*.bak
+*.scvd
+.vscode/
+.cache/
