@@ -65,6 +65,12 @@ void Error_Handler(void);
 #define OLED_CS_GPIO_Port GPIOB
 #define rg_led_Pin GPIO_PIN_1
 #define rg_led_GPIO_Port GPIOB
+#define spi2csn_Pin GPIO_PIN_12
+#define spi2csn_GPIO_Port GPIOB
+#define spi2nrst_Pin GPIO_PIN_5
+#define spi2nrst_GPIO_Port GPIOB
+#define spi2irq_Pin GPIO_PIN_8
+#define spi2irq_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
