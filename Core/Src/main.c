@@ -27,7 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include "usart.h"
-#include "pn532.h"
+#include "pan3029.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -96,17 +96,8 @@ int main(void)
   MX_I2C1_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-  PN532_Init();
+  PAN3029_StartContinuousRx();
 
-  /* 读一次固件版本，验证通信 */
-  {
-    uint8_t ic, ver, rev, sup;
-    if (PN532_GetFirmwareVersion(&ic, &ver, &rev, &sup)) {
-      printf("[PN532] FW: IC=0x%02X Ver=%d.%d Support=0x%02X\r\n", ic, ver, rev, sup);
-    } else {
-      printf("[PN532] GetFirmwareVersion FAIL\r\n");
-    }
-  }
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -121,18 +112,10 @@ int main(void)
 
 
 
-    /* --- PN532 读卡 --- */
-    uint8_t uid[10];
-    uint8_t uid_len = 0;
-    if (PN532_ReadCardUID(uid, &uid_len)) {
-      printf("[NFC] Card UID (%d bytes): ", uid_len);
-      for (uint8_t i = 0; i < uid_len; i++) printf("%02X ", uid[i]);
-      printf("\r\n");
-      HAL_Delay(2000);
-    } else {
-      printf(".\r\n");
-      HAL_Delay(500);
-    }
+    /* --- PAN3029 RX node --- */
+    PAN3029_RxDebugTask();
+
+    HAL_Delay(10);
 
   }
   /* USER CODE END 3 */
